@@ -9,3 +9,5 @@ Implementation of a Discrete Event Simulator (DES) of a GI/GI/1/S/∞ queuing sy
  * Random number generation for various simulation events.
  * Statistical analysis by using Correlation, Confidence intervals and Chi square tests.
  * Plotting of results
+
+Refer to the 'partX_simstudy.py' file for part by part simulation study.

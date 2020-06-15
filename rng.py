@@ -36,13 +36,13 @@ class RNG(object):
         """
         Return a new sample of the IAT RNS
         """
-        return self.iat_rns.next()*1000
+        return self.iat_rns.next()
     
     def get_st(self):
         """
         Return a new sample of the ST RNS
         """
-        return self.st_rns.next()*1000
+        return self.st_rns.next()
 
 
 class RNS(object):
@@ -75,61 +75,86 @@ class ExponentialRNS(RNS):
     
     """
     Class to provide exponentially distributed random numbers. After initialization, new numbers can be generated
-    using next(). Initialization with given lambda and optional seed.
-    :param lambda_x: the inverse of the mean of the exponential distribution
+    using next(). Initialization with given parameters and optional seed.
     :param the_seed: optional seed for the random number stream
     """
     
-    def __init__(self, lambda_x, the_seed=None):
+    def __init__(self, mean=1, the_seed=None):
         """
         Initialize Exponential RNS and set the parameters.
         """
         super(ExponentialRNS, self).__init__(the_seed)
-        self.mean = 0
-        self.set_parameters(lambda_x)
+        # TODO Task 3.1.1: Your code goes here
+        """
+        Also modify the list of input parameters according to the needs of this distribution.
+        """
+        self.lamb = float(1) / float(mean)
+        pass
         
-    def set_parameters(self, lambda_x):
+    def set_parameters(self, rho=None):
         """
-        Set parameter lambda, hence the mean of the exponential distribution.
+        Set parameters of the distribution.
         """
-        self.mean = 1./float(lambda_x)
+        # TODO Task 3.1.1: Your code goes here
+        """
+        Also modify the list of input parameters according to the needs of this distribution.
+        """
+        #self.lamb = 1 / mean
+        if rho:
+            self.lamb = float(1)/ float(rho) #Considering mean arrival rate = 1
+        
+        pass
         
     def next(self):
         """
         Generate the next random number using the inverse transform method.
         """
-        return -math.log(self.r.random()) * self.mean
+        # TODO Task 3.1.1: Your code goes here
+        p = self.r.random()
+        x = -(math.log(1-p))/ float(self.lamb)
+        return x
+        pass
         
 
 class UniformRNS(RNS):
     
     """
     Class to provide exponentially distributed random numbers. After initialization, new numbers can be generated
-    using next(). Initialization with upper and lower bound and optional seed.
-    :param a: the lower bound of the uniform distribution
-    :param b: the upper bound of the uniform distribution
+    using next(). Initialization with given parameters and optional seed.
     :param the_seed: optional seed for the random number stream
     """
     
-    def __init__(self, a, b, the_seed=None):
+    def __init__(self, low=0, high=0, the_seed=None):
         """
         Initialize Uniform RNS and set the parameters.
         """
         super(UniformRNS, self).__init__(the_seed)
-        self.upper_bound = a
-        self.lower_bound = b
-        self.width = self.upper_bound - self.lower_bound
+        # TODO Task 3.1.1: Your code goes here
+        """
+        Also modify the list of input parameters according to the needs of this distribution.
+        """
+        self.a = low
+        self.b = high
+        pass
         
-    def set_parameters(self, a, b):
+    def set_parameters(self, low, high):
         """
-        Set parameters a and b, the upper and lower bound of the distribution
+        Set parameters.
         """
-        self.upper_bound = a
-        self.lower_bound = b
-        self.width = self.upper_bound - self.lower_bound
+        # TODO Task 3.1.1: Your code goes here
+        """
+        Also modify the list of input parameters according to the needs of this distribution.
+        """
+        self.a = low
+        self.b = high
+        
+        pass
         
     def next(self):
         """
         Generate the next random number using the inverse transform method.
         """
-        return self.lower_bound + self.width * self.r.random()
+        # TODO Task 3.1.1: Your code goes here
+        p = self.r.random()
+        x = p*self.b + self.a*(1-p)
+        return x

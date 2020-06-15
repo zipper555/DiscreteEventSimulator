@@ -106,9 +106,10 @@ def task_5_2_2():
 
 def task_5_2_4():
     """
-    Plot confidence interval as described in the task description for task 5.2.4.
-    We use the function plot_confidence() for the actual plotting and run our simulation several times to get the
-    samples. Due to the different configurations, we receive eight plots in two figures.
+    Plot confidence interval as described in the task description given below.
+    Use an M/M/1 system and perform multiple runs simulation. Make your study for system offered traffic 0.5 and 0.9.
+    Use confidence levels of 0.9 and 0.95. Use 100 s and 1000 s as simulation time. Calculate the confidence interval
+    for the system throughput of 30 runs. Repeat this 100 times.
     """
     sim = Simulation()
     sim.sim_param.S = 10000
